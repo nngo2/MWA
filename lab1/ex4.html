@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+
+</head>
+
+<body>
+    <h3>BMI Calculator</h3>
+    <input type="radio" name="unit" value="English" />
+    <label>English</label>
+    <input type="number" name="height" placeholder="Enter your height" />
+    <input type="number" name="weight" placeholder="Enter your weight" />
+    <button id="calculate">Calculate</button>
+    <div id="output"></div>
+    <script>
+        'use strict'
+        class BMICalculator {
+            constructor(height, weight) {
+                if (!weight || !height || isNaN(weight) || isNaN(height)) {
+                    throw "Parameter is not a number!";
+                }
+                this.height = height;
+                this.weight = weight;
+            }
+
+            calculate() {
+                return (this.weight / (this.height * this.height) * 703);
+            }
+        }
+
+        window.onload = function () {
+            var button = document.getElementById("calculate");
+            button.onclick = function () {  
+                try {
+                    const w = document.getElementsByName("weight")[0];
+                    const h = document.getElementsByName("height")[0]; 
+                    const bmi = new BMICalculator(h.value, w.value);   
+                    document.getElementById("output").innerText = Math.floor(bmi.calculate() * 100) / 100;       
+                } catch (e){
+                    document.getElementById("output").innerText = e;
+                }         
+            };
+        }
+
+    </script>
+</body>
+
+</html>
