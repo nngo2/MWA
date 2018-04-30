@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+
+</head>
+
+<body>
+
+    <script>
+        String.prototype.filter = function (...words) {
+            let str = this;
+            for (let word of words) {
+                str = str.replace(word, "***");
+            }
+            return str;
+        }
+
+        console.log("This house is nice!".filter("house", "nice"));
+
+    </script>
+</body>
+
+</html>

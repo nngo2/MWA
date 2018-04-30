@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+
+</head>
+
+<body>
+
+    <script>
+        Array.prototype.bubbleSort = function () {
+            let arr = this;
+            let len = arr.length;
+            for (let i = 0; i < len - 1; i++) {
+                //do not need to go to length, since prevoius iterations (i) already sorted
+                for (let j = 0; j < len - i - 1; j++) { 
+                    if (arr[j] > arr[j+1]) {
+                        let temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        console.log([6,4,0,3,-2,1].bubbleSort());
+
+    </script>
+</body>
+
+</html>

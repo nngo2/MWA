@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+
+</head>
+
+<body>
+
+    <script>
+        function Person(name) {
+            this.name = name;
+        }
+
+        var teacherA = new Person("John Smith");
+        var teacherB = new Person("Mike Laury");
+
+        Person.prototype.teach = function(subject) {
+            console.log(this.name + " is now teaching " + subject);
+        }
+
+        teacherA.teach("MWA");
+        teacherB.teach("WAA");        
+
+    </script>
+</body>
+
+</html>
