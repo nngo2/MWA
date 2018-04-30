@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+
+</head>
+
+<body>
+    <ul>
+        <li data-time="5:56">ECMA 6</li>
+        <li data-time="8:20">Node JS</li>
+        <li data-time="3:15">Node JS</li>
+        <li data-time="4:45">ECMA 6</li>
+    </ul>
+
+    <script>
+        const items = Array.from(document.querySelectorAll('[data-time]')); 
+        const itemSet1 = items.filter(item => item.innerHTML == 'ECMA 6');
+        console.log(itemSet1);
+        
+        const itemSet2 = items.map(item => item.getAttribute('data-time'));
+        console.log(itemSet2);
+        
+        const itemSet3 = items.map(item =>  { 
+            const idx = item.getAttribute('data-time').lastIndexOf(':') + 1;
+            return item.getAttribute('data-time').substring(idx);
+         });
+        console.log(itemSet3);        
+        
+        const totalTime = items
+            .map(item => item.getAttribute('data-time'))
+            .reduce((sum, time) =>  { 
+                const idx = time.lastIndexOf(':');
+                const minuteToSecond = time.substring(0,idx) * 60;
+                const second = time.substring(idx+1) * 1;            
+                return sum + minuteToSecond + second ;
+            }, 0);
+
+        console.log(totalTime);               
+    </script>
+</body>
+
+</html>
