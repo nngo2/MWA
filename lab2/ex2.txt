@@ -1,0 +1,24 @@
+1/ When to use:
+- setImmediate: if we want to execute a little bit faster than using setTimeout,
+ for example after a callback from I/O, setImmediate queue (check phase's queue) 
+ will be visited before the setTimeout queue (timer phase's queue)  
+- setTimeout: want to guarantee the code execute after certain delay
+
+2/ Differences of process.nextTick and setImmediate 
+process.nextTick uses nextTick queue which is a higher priority queue, callbacks in this queue will be executed 
+before callbacks in the setImmediate queue (actually before enterring the event loop). 
+So basically if we want some callbacks to be completely finished before the next I/O or timers, use nextTick
+
+3/ 10 global modules in Node environment:
+    1/ global
+    2/ Math
+    3/ Array
+    4/ module
+    5/ console
+    6/ http
+    7/ fs
+    8/ Map
+    9/ Set
+    10/ process
+
+
