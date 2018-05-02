@@ -3,63 +3,28 @@ function slow(callback) {
         if (Math.random() > 0.5) {
             return callback("Error", null);
         }
-        callback(null, { id: 12345 });
+        return callback(null, { id: 12345 });
     }
 }
 
 function exec(fn) {
-    let result = [];
-
-    let done = function(fn, data) {
-        fn(data);
-    }
-
-    let fail = function(fn, error) {
-        fn(error);
-    }    
-
-    let callback = function (error, data) {
-        if (error) {
-            result.push({ error: error, data: null });
-        } else {
-            result.push({ error: null, data: data });
-        }
-    }
-
-    fn(callback);
-
-    const intervalObj = setInterval(() => {
-        if (result.length > 0) {
-            const obj = result.shift();
-            if (obj.error) {
-                fail(function(error) {
-                    console.log(error);
-                }, obj.error);
+    return new Promise(function (resolve, reject) {
+        const callback = function (error, data) {
+            if (error) {
+                reject(error);
             } else {
-                done(function(data) {
-                    console.log(data);
-                }, obj.data);
+                resolve(data);
             }
-
         }
-    }, 100);
-
-    setTimeout(function() {
-        clearInterval(intervalObj);
-    }, 5000);
-
-    return {
-        done: done,
-        fail: fail
-    }
+        fn(callback);
+    });
 }
 
-exec(slow)
-    // .done(function (data) {
-    //     console.log(data);
-    // })
-    // .fail(function (err) {
-    //     console.log("Error: " + err);
-    // });
-
-
+exec(slow).then(
+    function (data) {
+        console.log(data);
+    },
+    function (err) {
+        console.log("Error: " + err);
+    },       
+);
