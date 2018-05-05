@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 /* Post form */
 router.post('/', function (req, res, next) {
   console.log(req.body);
-  req.assert('email', 'email is required').notEmpty();
+  req.assert('email', 'email is required').notEmpty().isEmail();
   const errors = req.validationErrors();
   if (errors) {
     res.render('newsletter', { title: title, errors: errors });
