@@ -7,24 +7,29 @@ const dataUrl = 'http://jsonplaceholder.typicode.com/users';
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  // fetchUsers().then(data => {
-  //   res.render('users', {title: 'User Table', users: data});
-  // })
+  fetchUsers().then(data => {
+    res.render('users', {title: 'User Table', users: data});
+  }).catch(err => {
+    res.end(err);
+  });
 
   // fetchUsersAsync().then(data => {
   //   res.render('users', {title: 'User Table', users: data});
-  // })  
+  // }).catch(err => {
+  //   res.end(err);
+  // });
 
-  let userData = new Subject(); 
+  // let userData = new Subject(); 
 
-  userData.subscribe(
-    (data) => {
-      res.render('users', {title: 'User Table', users: data});
-  }, (err) => {
-    console.log(err);
-  });
+  // userData.subscribe(
+  //   (data) => {
+  //     res.render('users', {title: 'User Table', users: data});
+  // }, (err) => {
+  //   console.log(err);
+  //   res.end(err);
+  // });
 
-  fetchUsersSubject(userData);
+  // fetchUsersSubject(userData);
 
 });
 
@@ -35,7 +40,7 @@ function fetchUsers() {
        resolve(values);
       });
     }).catch(err => {
-      reject(Error(err));
+      reject(new Error(err));
     });
   });
 }
@@ -55,7 +60,7 @@ async function fetchUsersAsync() {
       const users = await data.json();
       return users;
     } catch (err) {
-      return Error(err);
+      return new Error(err);
     }
 }
 
