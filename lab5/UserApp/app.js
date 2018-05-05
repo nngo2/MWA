@@ -14,6 +14,7 @@ var app = express();
 app.set('x-powered-by', false);
 app.set('trust proxy', true);
 app.set('strict routing', true);
+app.set('case sensitive routing', true);
 app.set('view cache', true);
 
 // view engine setup
