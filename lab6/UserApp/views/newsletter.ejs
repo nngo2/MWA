@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <% if (locals.errors) {%>
+  <p>
+    <% for (const error of errors) {%> 
+      <li><%=error.msg%></li>
+    <% } %>
+  </p>
+  <% } %>
+  <form action="/newsletter" method="post">
+    <label for="email">Enter email: </label>
+    <input id="email" type="email" name="email" placeholder="Exter valid email">
+    <input type="hidden" name="_csrf" value="<%=csrftoken%>">
+    <input type="submit" value="OK">
+  </form>
+</body>
+
+</html>
