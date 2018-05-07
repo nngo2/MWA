@@ -10,7 +10,7 @@ const validator = require('express-validator');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var usersRouter = require('./routes/newsletter');
+var newsletterRouter = require('./routes/newsletter');
 
 var app = express();
 
@@ -45,7 +45,7 @@ app.use('/images', express.static(__dirname + '/public/images'));
 // routers setup
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/newsletter', usersRouter);
+app.use('/newsletter', newsletterRouter);
 
 // error handles must be after routing
 // catch 404 and forward to error handler
