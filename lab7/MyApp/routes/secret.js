@@ -8,14 +8,15 @@ const dbName = 'testDB';
 function getMessage() {
   return new Promise((resolve, reject) => {
     MongoClient.connect(dbUrl, function(err, client) {
-      if (err) reject(Error(err));
-
-      const db = client.db(dbName);
-
-      db.collection('homework7').findOne({}, function(err2, doc) {
-        if (err) reject(Error(err2));
-        resolve(doc.message);
-      });
+      if (err) {
+        reject(err);
+      } else  {
+        const db = client.db(dbName);
+        db.collection('homework7').findOne({}, function(err2, doc) {
+          if (err) reject(Error(err2));
+          resolve(doc.message);
+        });
+      }
     });
   });
 }
@@ -37,7 +38,6 @@ router.get('/', function(req, res, next) {
     console.log(err);
     res.end(err);
   })
-
 });
 
 module.exports = router;

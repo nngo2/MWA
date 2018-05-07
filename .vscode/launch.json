@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/lab2\\ex3.js"
+            "program": "${workspaceFolder}/lab7\\MyApp\\bin\\www"
         }
     ]
 }
