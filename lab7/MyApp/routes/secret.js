@@ -13,8 +13,11 @@ function getMessage() {
       } else  {
         const db = client.db(dbName);
         db.collection('homework7').findOne({}, function(err2, doc) {
-          if (err) reject(Error(err2));
-          resolve(doc.message);
+          if (err2) {
+            reject(err2);
+          } else {
+            resolve(doc.message);
+          }
         });
       }
     });
