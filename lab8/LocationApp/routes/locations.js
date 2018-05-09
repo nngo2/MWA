@@ -156,7 +156,7 @@ router.get('/edit/:id', function (req, res, next) {
       }
     })
     .catch(err => {
-      throw err;
+      next(err);
     });
   }).catch(err => {
     next(err);
