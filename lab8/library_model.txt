@@ -1,0 +1,38 @@
+books : {
+    isbn : '123456789ISBN',
+    title: 'Some title here',
+    numberOfCopies: 100,
+    remainedCopies: 0,
+    authors: [
+        {
+            name: 'Jim Smsith',
+            bio: 'Long text here'
+        }
+    ]
+    keywords: ['Math', 'Physics']
+}
+
+students : {
+    studentId : '888234'
+    name: 'Lana Sky'
+    email: 'lanasky@mum.edu',
+    borrowBooks: [
+        {
+            isbn: '123456789ISBN',
+            title: 'Some title here',            
+            borrowDate: '05/05/2005',
+            returnDate: ''
+        }
+    ]
+}
+
+Index suggestions:
+------------------
+db.books.createIndex({isbn: 1})
+db.books.createIndex({title: 1})
+db.books.createIndex({"authors.name": 1})
+db.books.createIndex({keywords: 1})
+
+db.students.createIndex({studentId: 1})
+db.students.createIndex({name: 1})
+db.students.createIndex({email: 1}, {unique: true})

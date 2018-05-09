@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Locations</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <h1>Add Location</h1>
+    <% if (locals.errors) {%>
+        <p>
+          <% for (const error of errors) {%> 
+            <li><%=error.msg%></li>
+          <% } %>
+        </p>
+    <% } %>    
+    <form action="/locations/add" method="post">
+        <div>
+            <label for="name">Enter location name: </label>
+            <input id="name" type="text" name="name" placeholder="Enter location name">
+        </div>
+
+        <div>
+            <label for="category">Enter location category: </label>
+            <input id="category" type="text" name="category" placeholder="Enter location category">
+        </div>
+
+        <div>
+            <label for="lon">Enter longitude: </label>
+            <input id="lon" type="text" name="lon" placeholder="Enter longitude">
+        </div>
+
+        <div>
+            <label for="lat">Enter latitude: </label>
+            <input id="lat" type="text" name="lat" placeholder="Enter latitude"> 
+        </div>
+        <input type="hidden" name="_csrf" value="<%=csrftoken%>">
+        <input type="submit" value="OK">
+    </form>
+
+    <a href="/locations/search"><h1>Search Locations</h1></a>
+    <h1>Locations</h1>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < locations.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= locations[i].name %>
+                    </td>
+                    <td>
+                        <%= locations[i].category %>
+                    </td>
+                    <td>
+                        <%= locations[i].coord[0] %>
+                    </td>
+                    <td>
+                        <%= locations[i].coord[1] %>
+                    </td>
+                    <td>
+                        <a href="/locations/edit/<%= locations[i]._id %>">
+                            Edit</a>
+                    </td>
+                    <td>
+                        <a href="/locations/delete/<%= locations[i]._id %>">
+                            Delete</a>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Locations</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <h1><a href="/locations">Back</a></h1>
+    <h1>Edit Location</h1>
+    <% if (locals.errors) {%>
+        <p>
+          <% for (const error of errors) {%> 
+            <li><%=error.msg%></li>
+          <% } %>
+        </p>
+    <% } %>    
+    <form action="/locations/edit/<%=location._id%>" method="post">
+        <div>
+            <label for="name">Enter location name: </label>
+            <input id="name" type="text" name="name" value="<%=location.name%>" placeholder="Enter location name">
+        </div>
+
+        <div>
+            <label for="category">Enter location category: </label>
+            <input id="category" type="text" name="category" value="<%=location.category%>" placeholder="Enter location category">
+        </div>
+
+        <div>
+            <label for="lon">Enter longitude: </label>
+            <input id="lon" type="text" name="lon" value="<%=location.coord[0]%>" placeholder="Enter longitude">
+        </div>
+
+        <div>
+            <label for="lat">Enter latitude: </label>
+            <input id="lat" type="text" name="lat" value="<%=location.coord[1]%>" placeholder="Enter latitude"> 
+        </div>
+        <input type="hidden" name="_csrf" value="<%=csrftoken%>">
+        <input type="submit" value="OK">
+    </form>
+</body>
+
+</html>
