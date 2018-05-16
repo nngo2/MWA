@@ -1,0 +1,7 @@
+<app-mylist [list]="sampleList"></app-mylist>
+
+<p appMyvisibility visibility="{{visibility}}">Click here to test visibility</p>
+
+<p appMycolor (currentColor)="colorSelected($event)">Click here to test color change</p>
+
+<p>Color currently selected: {{selectedColor}}</p>
